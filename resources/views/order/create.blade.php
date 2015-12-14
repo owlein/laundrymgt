@@ -4,7 +4,7 @@
 
 	<div class="row">
 		<div class="col-lg-12">
-			<h1>Edit Order</h1>
+			<h1>Create New Order</h1>
             <h1><br></h1>
                         
             {!! Form::open(['route' => 'order.store', 'class'=>'form-horizontal']) !!}

@@ -67,7 +67,7 @@ class OrderController extends Controller
     public function show($id)
     {
 	     $orders = Order::all();
-    	return view('order.list',array('orders' => $orders));
+    	return view('order.history',array('orders' => $orders));
 
 //     	$order = Order::find($id);
 //     	return view('order.show', array('order' => $order));     
