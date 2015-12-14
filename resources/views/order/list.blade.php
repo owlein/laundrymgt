@@ -42,7 +42,7 @@
                 </li>
 				{!! Form::open(['method'=>'GET','url'=>'order','class'=>'navbar-form navbar-left','role'=>'search'])  !!}
                     <div class="form-group">
-                        <input type="text" name="search" class="form-control" placeholder="Search Order">
+                        <input type="text" name="search" class="form-control" placeholder="Search Orders">
                     <button type="submit" class="btn btn-default" style="background-color: #4E9CD0; color: #09457A;"><span class="glyphicon glyphicon-search" ></span></button>
                     </div>
 				{!! Form::close() !!}
