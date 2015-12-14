@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Simple Sidebar - Start Bootstrap Template</title>
+    <title>Laundry Shop Management</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{{ URL::asset('/css/bootstrap.min.css') }}" rel="stylesheet">

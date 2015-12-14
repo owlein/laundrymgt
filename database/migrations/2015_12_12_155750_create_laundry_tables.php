@@ -29,7 +29,7 @@ class CreateLaundryTables extends Migration
 		Schema::create('orders', function(Blueprint $table) {
 			$table->increments('id');
 			$table->integer('customer_id')->unsigned()->default(0);
-			$table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
+			$table->foreign('customer_id')->references('id')->on('customers');
 			$table->string('receipt_no')->default('');
 			$table->decimal('price', 5, 2)->default(0.00);
 			$table->decimal('weight', 5, 2)->default(0.00);

@@ -3,8 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Order;
 
-class Customer extends Model
+class Customer extends \Eloquent
 {
     //
     
@@ -20,4 +21,11 @@ class Customer extends Model
         'address',
         'contact_no'
     ];
+  
+
+    public function customerOrders()
+    {
+        return $this->hasMany('Order');
+    }
+    
 }

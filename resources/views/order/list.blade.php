@@ -29,7 +29,7 @@
                             	    <tr>
                                 	    <td>{{ $order->id }}</td>
                                    	 	<td>{{ $order->customer_id }}</td>
-                                   	 	<td>Customer Name</td>
+                                   	 	<td>{{ $order->customer->name }}</td>
                                  		<td>{{ $order->start_date }}</td>
                             	        <td>{{ $order->delivery_date }}</td>
                                 	    <td>{{ $order->type }}</td>
