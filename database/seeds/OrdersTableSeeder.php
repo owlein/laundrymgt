@@ -11,9 +11,9 @@ class OrdersTableSeeder extends Seeder {
         DB::table('orders')->delete();
  
         $orders = array(
-            ['id' => 1, 'customer_id' => 1, 'receipt_no' => "241234", 'price' => 100.00, 'weight' => 2.5, 'type' => "normal", 'status' => "accepted", 'start_date' => new DateTime, 'delivery_date' => new DateTime, 'with_press' => false],
-            ['id' => 2, 'customer_id' => 2, 'receipt_no' => "241234", 'price' => 100.00, 'weight' => 2.5, 'type' => "normal", 'status' => "accepted", 'start_date' => new DateTime, 'delivery_date' => new DateTime, 'with_press' => false],
-            ['id' => 3, 'customer_id' => 3, 'receipt_no' => "241234", 'price' => 100.00, 'weight' => 2.5, 'type' => "normal", 'status' => "accepted", 'start_date' => new DateTime, 'delivery_date' => new DateTime, 'with_press' => false],
+            ['id' => 1, 'customer_id' => 1, 'receipt_no' => "241234", 'price' => 100.00, 'weight' => 2.5, 'type' => "hand_wash", 'status' => "accepted", 'start_date' => '2015-12-01', 'delivery_date' => '2015-12-01', 'with_press' => false],
+            ['id' => 2, 'customer_id' => 2, 'receipt_no' => "241234", 'price' => 100.00, 'weight' => 2.5, 'type' => "machine_wash", 'status' => "for_pickup", 'start_date' => '2015-12-01', 'delivery_date' => '2015-12-01', 'with_press' => false],
+            ['id' => 3, 'customer_id' => 3, 'receipt_no' => "241234", 'price' => 100.00, 'weight' => 2.5, 'type' => "dry_clean", 'status' => "processing", 'start_date' => '2015-12-01', 'delivery_date' => '2015-12-01', 'with_press' => true],
         );
  
         // Uncomment the below to run the seeder

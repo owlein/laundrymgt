@@ -33,10 +33,10 @@ class CreateLaundryTables extends Migration
 			$table->string('receipt_no')->default('');
 			$table->decimal('price', 5, 2)->default(0.00);
 			$table->decimal('weight', 5, 2)->default(0.00);
-			$table->enum('type', array('dry_clean', 'handwash', 'normal'));
+			$table->enum('type', array('machine_wash', 'hand_wash', 'dry_clean'));
 			$table->enum('status', array('accepted', 'processing', 'for_pickup', 'done'));
-			$table->timestamp('start_date');
-			$table->timestamp('delivery_date');
+			$table->date('start_date');
+			$table->date('delivery_date');
 			$table->boolean('with_press')->default(false);
 		});
     }

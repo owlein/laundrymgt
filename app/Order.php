@@ -11,6 +11,20 @@ class Order extends \Eloquent
     protected $with = [
         'customer',
     ];
+    
+    public $timestamps = false;
+    
+    protected $fillable = [
+        'customer_id',
+        'receipt_no',
+        'price',
+        'weight',
+        'type',
+        'status',
+        'start_date',
+        'delivery_date',
+        'with_press',
+    ];
 
     public function customer()
     {
