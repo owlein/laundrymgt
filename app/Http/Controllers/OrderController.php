@@ -25,10 +25,6 @@ class OrderController extends Controller
         ->orderBy('id')
         ->paginate(20);
         
-//         $orders = Order::with('customer');
-
-//         return Order::make('order.show', compact('orders'));
-        
 //  $orders = Order::all();
     	return view('order.list',array('orders' => $orders));
     }
@@ -70,8 +66,11 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-    	$order = Order::find($id);
-    	return view('order.show', array('order' => $order));     
+	     $orders = Order::all();
+    	return view('order.list',array('orders' => $orders));
+
+//     	$order = Order::find($id);
+//     	return view('order.show', array('order' => $order));     
     }
 
     /**

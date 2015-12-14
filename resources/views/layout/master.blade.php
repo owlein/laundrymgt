@@ -54,9 +54,11 @@
                 <li>
                     <a href="{{ route('order.create') }}">Create Order</a>
                 </li>
-                
                 <li>
-                    <a href="{{ route('order.index') }}">View Orders</a>
+                    <a href="{{ route('order.index') }}">View Active Orders</a>
+                </li>
+                <li>
+                    <a href="{{ route('order.show') }}">View Order History</a>
                 </li>
                 <li>
                     <a href="{{ route('customer.create') }}">Create User</a>
