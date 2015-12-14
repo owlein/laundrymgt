@@ -62,7 +62,7 @@
                     <a href="{{ route('customer.create') }}">Create User</a>
                 </li>
                 <li>
-                    <a href="{{ route('customer.index') }}">View User</a>
+                    <a href="{{ route('customer.index') }}">View Users</a>
                 </li>
             </ul>
         </div>

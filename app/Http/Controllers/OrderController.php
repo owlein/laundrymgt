@@ -21,6 +21,7 @@ class OrderController extends Controller
 		$search = \Request::get('search'); //<-- we use global request to get the param of URI
 //  
     	$orders = Order::where('id','like','%'.$search.'%')
+    	->where('status','<>','done')
         ->orderBy('id')
         ->paginate(20);
         
