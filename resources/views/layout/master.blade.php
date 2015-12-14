@@ -35,7 +35,7 @@
             <ul class="sidebar-nav">
                 <br>
                 <li class="sidebar-brand">
-                    <a href="home.html"><img src="{{ URL::asset('/img/logo1.png') }}" class="img-responsive"></a>
+                    <a href="{{ route('order.index') }}"><img src="{{ URL::asset('/img/logo1.png') }}" class="img-responsive"></a>
                 </li>
                 <li>
                     <br>
@@ -60,6 +60,9 @@
                 </li>
                 <li>
                     <a href="{{ route('customer.create') }}">Create User</a>
+                </li>
+                <li>
+                    <a href="{{ route('customer.index') }}">View User</a>
                 </li>
             </ul>
         </div>

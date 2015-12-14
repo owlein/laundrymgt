@@ -1,81 +1,105 @@
 @extends('layout.master')
 
 @section('content')
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1>Create Order</h1>
-                        <h1><br></h1>
-                        <form class="form-horizontal">
-<!--                             <div class="form-group">
-                                <label class="col-sm-2 control-label">Order ID</label>
-                                <div class="col-sm-10">
-                                    <p class="form-control-static">45738</p>
-                                </div>
-                            </div> -->
 
-                            <div class="form-group">
-                                <label for="inputCustID" class="col-sm-2 control-label">Customer ID</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="inputCustID" placeholder="Enter Customer ID">
-                                </div>
-                            </div>
+	<div class="row">
+		<div class="col-lg-12">
+			<h1>Edit Order</h1>
+            <h1><br></h1>
+                        
+            {!! Form::open(['route' => 'order.store', 'class'=>'form-horizontal']) !!}
+            
+			<div class="form-group">
+			    {!! Form::label('status', 'Status :', ['class' => 'col-sm-2 control-label']) !!}
+				<div class="col-sm-8">
+				{!! Form::select('status', ['accepted' => 'Accepted', 'processing' => 'Processing', 'for_pickup' => 'For Pickup', 'done' => 'Done'], 'accepted', ['class' => 'form-control']) !!}
+				</div>
+			</div>
 
-                            <div class="form-group">
-                                <label for="chooseDates" class="col-sm-2 control-label">Wash Dates</label>
-                                <div class="col-sm-8" id="sandbox-container">
-                                    <div class="input-daterange input-group" id="datepicker">
-                                    <input class="input-sm form-control" name="start" type="text" placeholder="Start Date">
-                                    <span class="input-group-addon">to</span>
-                                    <input class="input-sm form-control" name="end" type="text" placeholder="Claim Date">
-                                    </div>
-                                </div>
-                            </div>
+			<div class="form-group">
+	    		{!! Form::label('customer_name', 'Customer Name :', ['class' => 'col-sm-2 control-label']) !!}
+			    <div class="col-sm-8">
+                <select class="form-control">
+				@foreach($customers as $customer)
+                <option value='{{ $customer->id }}'>  {{ $customer->name }} </option>
+				@endforeach
+				</select>
+				</div>
+			</div>
+	          
+			<div class="form-group">
+				{!! Form::label('customer_address', 'Address :', ['class' => 'col-sm-2 control-label']) !!}
+				<div class="col-sm-8">
+				{!! Form::text('customer_address', '', ['class' => 'form-control', 'readonly' => 'true']) !!}
+				</div>
+			</div>
+	          
+			<div class="form-group">
+				{!! Form::label('customer_contact_no', 'Contact Number :', ['class' => 'col-sm-2 control-label']) !!}
+				<div class="col-sm-8">
+				{!! Form::text('customer_contact_no', '', ['class' => 'form-control', 'readonly' => 'true']) !!}
+				</div>
+			</div>
+	
+			<div class="form-group">
+	    		{!! Form::label('wash_dates', 'Wash Dates', ['class' => 'col-sm-2 control-label']) !!}
+			    <div class="col-sm-8" id="sandbox-container">
+        	    	<div class="input-daterange input-group" id="datepicker">
+		    		{!! Form::text('start_date', '', ['class' => 'input-sm form-control', 'placeholder' => 'Start Date']) !!}            
+		            <span class="input-group-addon">to</span>
+			    	{!! Form::text('delivery_date', '', ['class' => 'input-sm form-control', 'placeholder' => 'Delivery Date']) !!}            
+        		    </div>
+		    	</div>
+			</div>
 
-                            <div class="form-group">
-                                <label for="choosePrice" class="col-sm-2 control-label">Type</label>
-                                <div class="col-sm-8">
-                                    <select class="form-control">
-                                        <option value="machine-wash">Machine Wash</option>
-                                        <option value="hand-wash">Hand Wash</option>
-                                        <option value="dry-clean">Dry Clean</option>
-                                    </select>
-                                </div>
-                            </div>
+			<div class="form-group">
+	    		{!! Form::label('type', 'Type :', ['class' => 'col-sm-2 control-label']) !!}
+			    <div class="col-sm-8">
+				{!! Form::select('type', ['machine_wash' => 'Machine Wash', 'hand_wash' => 'Hand Wash', 'dry_clean' => 'Dry Clean'], 'machine_wash', ['class' => 'form-control']) !!}    	</div>
+			</div>
+                            
+			<div class="form-group">
+	    		{!! Form::label('price', 'Price :', ['class' => 'col-sm-2 control-label']) !!}
+			    <div class="col-sm-8">
+    			{!! Form::text('price', '0.00', ['class' => 'form-control']) !!}
+		    	</div>
+			</div>
+                            
+			<div class="form-group">
+	    		{!! Form::label('weight', 'Weight (kgs):', ['class' => 'col-sm-2 control-label']) !!}
+			    <div class="col-sm-8">
+    			{!! Form::text('weight', '', ['class' => 'form-control']) !!}
+		    	</div>
+			</div>
+                            
+			<div class="form-group">
+	    		{!! Form::label('receipt_no', 'Receipt Number :', ['class' => 'col-sm-2 control-label']) !!}
+			    <div class="col-sm-8">
+    			{!! Form::text('receipt_no', '', ['class' => 'form-control']) !!}
+		    	</div>	
+			</div>
 
-                            <div class="form-group">
-                                <label for="inputPrice" class="col-sm-2 control-label">Price</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="inputPrice" placeholder="Enter Price">
-                                </div>
-                            </div>
+			<div class="form-group">
+	    		{!! Form::label('with_press', 'With Press?', ['class' => 'col-sm-2 control-label']) !!}
+			    <div class="col-sm-8">
+	    		<label class="radio-inline">
+		    	{!! Form::radio('with_press', 0, ['class' => 'form-control']) !!} Yes
+    			</label>
+		    	<label class="radio-inline">
+    			{!! Form::radio('with_press', 1, ['class' => 'form-control']) !!} No
+		    	</label>
+    			</div>
+			</div>
 
-                            <div class="form-group">
-                                <label for="inputWeight" class="col-sm-2 control-label">Weight</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="inputWeight" placeholder="Enter Weight">
-                                </div>
-                            </div>
+            <div class="form-group">
+            	<div class="col-sm-offset-2 col-sm-10">
+				{!! Form::submit('Create Order', ['class' => 'btn btn-success']) !!}
+            	</div>
+        	</div>
 
-                            <div class="form-group">
-                                <label for="inputRecNum" class="col-sm-2 control-label">Receipt Number</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="inputRecNum" placeholder="Enter Receipt Number">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="hasPress" class="col-sm-2 control-label">With Press?</label>
-                                <div class="col-sm-8">
-                                <label class="radio-inline"><input type="radio" name="optradio">Yes</label>
-                                <label class="radio-inline"><input type="radio" name="optradio">No</label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                  <button type="submit" class="btn btn-success">Submit</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+
+			{!! Form::close() !!}
+        </div>
+    </div>
 
 @stop

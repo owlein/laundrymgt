@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Order;
+use App\Customer;
 
 class OrderController extends Controller
 {
@@ -38,7 +39,11 @@ class OrderController extends Controller
      */
     public function create()
     {
-        return view('order.create');
+    
+		$customers = Customer::all();
+//     	return view('order.create',compact('customers', $customers));
+    	return view('order.create',array('customers' => $customers));
+//         return view('order.create');
     }
 
     /**
