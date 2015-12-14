@@ -41,8 +41,12 @@
                 <div class="title">Hello {{ $customer->name }} : )</div>
                 <div class="content">Address : {{ $customer->address }}</div>
                 <div class="content">Contact No : {{ $customer->contact_no }}</div>
+                
+            <div class="content">
+            </div>
             </div>
         </div>
+      
         
     </body>
 </html>

@@ -17,9 +17,18 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        return view('customer');
-// 		$customers = Customer::all();
-// 		return view('customer', compact('customers'));    
+//         return view('customer.show');
+
+	$search = \Request::get('search'); //<-- we use global request to get the param of URI
+ 
+    $customers = Customer::where('name','like','%'.$search.'%')
+        ->orderBy('name')
+        ->paginate(20);
+ 
+    return view('customer.list',array('customers' => $customers));
+    
+    //     $customers = Customer::all();
+//       return view('customer.list', array('customers' => $customers));
 	}
 
     /**
@@ -29,7 +38,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        return view('customer');
+        return view('customer.create');
 	}
 
     /**
@@ -40,7 +49,13 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+//         dd($request->all());
+        
+	    $input = $request->all();
+
+    	Customer::create($input);
+
+	    return redirect()->route('customer.index');
     }
 
     /**
@@ -51,8 +66,8 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        $customers = Customer::find($id);
-      return view('customer', array('customer' => $customers));
+    	$customer = Customer::find($id);
+    	return view('customer.show', array('customer' => $customer));      
     }
 
     /**
@@ -61,9 +76,10 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Customer $customer)
+    public function edit($id)
     {
-//         return view('customer', compact('customer'));
+	    $customer = Customer::find($id);
+    	return view('customer.edit', array('customer' => $customer));
     }
 
     /**
@@ -73,9 +89,21 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Customer $customer)
+    public function update(Request $request, $id)
     {
-        //
+        $customer = Customer::find($id);
+
+    	$this->validate($request, [
+        	'name' => 'required',
+	        'address' => 'required',
+	        'contact_no' => 'required'
+    	]);
+
+    $input = $request->all();
+
+    $customer->fill($input)->save();
+
+    return redirect()->route('customer.index');
     }
 
     /**
@@ -84,8 +112,10 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Customer $customer)
+    public function destroy($id)
     {
-        //
+        $customer = Customer::find($id);
+		$customer->delete();
+    	return redirect()->route('customer.index');
     }
 }

@@ -30,8 +30,6 @@ class CreateLaundryTables extends Migration
 			$table->increments('id');
 			$table->integer('customer_id')->unsigned()->default(0);
 			$table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
-			$table->integer('clothes_id')->unsigned()->default(0);
-			$table->foreign('clothes_id')->references('id')->on('clothes')->onDelete('cascade');
 			$table->string('receipt_no')->default('');
 			$table->decimal('price', 5, 2)->default(0.00);
 			$table->decimal('weight', 5, 2)->default(0.00);

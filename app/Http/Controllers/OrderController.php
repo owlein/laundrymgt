@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Order;
 
 class OrderController extends Controller
 {
@@ -16,7 +17,14 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+		$search = \Request::get('search'); //<-- we use global request to get the param of URI
+ 
+    	$orders = Order::where('id','like','%'.$search.'%')
+        ->orderBy('id')
+        ->paginate(20);
+        
+//  $orders = Order::all();
+    	return view('order.list',array('orders' => $orders));
     }
 
     /**
@@ -26,7 +34,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        return view('order.create');
     }
 
     /**
@@ -37,7 +45,11 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+	    $input = $request->all();
+
+    	Order::create($input);
+
+	    return redirect()->route('order.index');
     }
 
     /**
@@ -46,9 +58,10 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
+    public function show($id)
     {
-        //
+    	$order = Order::find($id);
+    	return view('order.show', array('order' => $order));     
     }
 
     /**
@@ -57,9 +70,10 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Order $order)
+    public function edit($id)
     {
-        //
+	    $order = Order::find($id);
+    	return view('order.edit', array('order' => $order));
     }
 
     /**
@@ -69,9 +83,21 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $order)
+    public function update(Request $request, $id)
     {
-        //
+        $order = Order::find($id);
+
+//     	$this->validate($request, [
+//         	'name' => 'required',
+// 	        'address' => 'required',
+// 	        'contact_no' => 'required'
+//     	]);
+
+	    $input = $request->all();
+
+    	$order->fill($input)->save();
+
+	    return redirect()->route('order.index');
     }
 
     /**
@@ -80,8 +106,10 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order $order)
+    public function destroy($id)
     {
-        //
+        $order = Order::find($id);
+		$order->delete();
+    	return redirect()->route('order.index');
     }
 }
