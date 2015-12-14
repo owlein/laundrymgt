@@ -17,17 +17,17 @@ class OrderController extends Controller
      */
     public function index()
     {
-// 		$search = \Request::get('search'); //<-- we use global request to get the param of URI
+		$search = \Request::get('search'); //<-- we use global request to get the param of URI
 //  
-//     	$orders = Order::where('id','like','%'.$search.'%')
-//         ->orderBy('id')
-//         ->paginate(20);
+    	$orders = Order::where('id','like','%'.$search.'%')
+        ->orderBy('id')
+        ->paginate(20);
         
 //         $orders = Order::with('customer');
 
 //         return Order::make('order.show', compact('orders'));
         
- $orders = Order::all();
+//  $orders = Order::all();
     	return view('order.list',array('orders' => $orders));
     }
 
