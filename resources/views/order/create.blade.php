@@ -19,25 +19,25 @@
 			<div class="form-group">
 	    		{!! Form::label('customer_name', 'Customer Name :', ['class' => 'col-sm-2 control-label']) !!}
 			    <div class="col-sm-8">
-                <select class="form-control">
+                <select class="form-control" id="customerNameSelect" onchange="checkForOther(this)">
 				@foreach($customers as $customer)
                 <option value='{{ $customer->id }}'>  {{ $customer->name }} </option>
 				@endforeach
 				</select>
 				</div>
 			</div>
+			
+			<script> 
+			function checkForOther(obj) { 
+			var x = document.getElementById("customerNameSelect").value;
+		    document.getElementById("customer_id").value = x;
+			} 
+			</script> 
 	          
 			<div class="form-group">
-				{!! Form::label('customer_address', 'Address :', ['class' => 'col-sm-2 control-label']) !!}
+				{!! Form::label('customer_id', 'Customer ID :', ['class' => 'col-sm-2 control-label']) !!}
 				<div class="col-sm-8">
-				{!! Form::text('customer_address', '', ['class' => 'form-control', 'readonly' => 'true']) !!}
-				</div>
-			</div>
-	          
-			<div class="form-group">
-				{!! Form::label('customer_contact_no', 'Contact Number :', ['class' => 'col-sm-2 control-label']) !!}
-				<div class="col-sm-8">
-				{!! Form::text('customer_contact_no', '', ['class' => 'form-control', 'readonly' => 'true']) !!}
+				{!! Form::text('customer_id', '1', ['class' => 'form-control', 'readonly' => 'true']) !!}
 				</div>
 			</div>
 	
@@ -83,10 +83,10 @@
 	    		{!! Form::label('with_press', 'With Press?', ['class' => 'col-sm-2 control-label']) !!}
 			    <div class="col-sm-8">
 	    		<label class="radio-inline">
-		    	{!! Form::radio('with_press', 0, ['class' => 'form-control']) !!} Yes
+		    	{!! Form::radio('with_press', 1, ['class' => 'form-control']) !!} Yes
     			</label>
 		    	<label class="radio-inline">
-    			{!! Form::radio('with_press', 1, ['class' => 'form-control']) !!} No
+    			{!! Form::radio('with_press', 0, ['class' => 'form-control']) !!} No
 		    	</label>
     			</div>
 			</div>
@@ -103,3 +103,4 @@
     </div>
 
 @stop
+

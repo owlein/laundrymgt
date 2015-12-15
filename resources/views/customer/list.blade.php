@@ -4,7 +4,7 @@
 
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1>View All Customers</h1>
+                        <h1>View All Users</h1>
                         <h1><br></h1>
                         <div class="col-lg-10">
                         <table class="table table-hover">

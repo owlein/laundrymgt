@@ -74,6 +74,7 @@
     			{!! Form::text('receipt_no', $order->receipt_no, ['class' => 'form-control']) !!}
 		    	</div>	
 			</div>
+    			{!! Form::text('receipt_no', $order->with_press, ['class' => 'form-control']) !!}
 
 			<div class="form-group">
 	    		{!! Form::label('with_press', 'With Press?', ['class' => 'col-sm-2 control-label']) !!}

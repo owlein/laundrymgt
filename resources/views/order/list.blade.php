@@ -38,7 +38,7 @@
                               		    <td>{{ $order->receipt_no }}</td>
                                 	    <td>{{ $order->with_press }}</td>
                             	        <td>{{ $order->status }}</td>
-                            	        <td><a href="{{ route('order.edit', $order->id) }}" >Update</a></td>
+                            	        <td><a href="{{ route('order.edit', $order->id) }}" >View / Update</a></td>
                         	        </tr>
 								@endforeach
                             </tbody>
