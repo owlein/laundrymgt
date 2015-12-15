@@ -74,16 +74,15 @@
     			{!! Form::text('receipt_no', $order->receipt_no, ['class' => 'form-control']) !!}
 		    	</div>	
 			</div>
-    			{!! Form::text('receipt_no', $order->with_press, ['class' => 'form-control']) !!}
 
 			<div class="form-group">
 	    		{!! Form::label('with_press', 'With Press?', ['class' => 'col-sm-2 control-label']) !!}
 			    <div class="col-sm-8">
 	    		<label class="radio-inline">
-		    	{!! Form::radio('with_press', $order->with_press, ['class' => 'form-control']) !!} Yes
+		    	{!! Form::radio('with_press', 1, ['class' => 'form-control']) !!} Yes
     			</label>
 		    	<label class="radio-inline">
-    			{!! Form::radio('with_press', $order->with_press, ['class' => 'form-control']) !!} No
+    			{!! Form::radio('with_press', 0, ['class' => 'form-control']) !!} No
 		    	</label>
     			</div>
 			</div>
